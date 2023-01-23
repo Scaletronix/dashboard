@@ -4,8 +4,6 @@
 // </auto-generated>
 //----------------------
 
-using System.Collections.Generic;
-
 #pragma warning disable 108 // Disable "CS0108 '{derivedDto}.ToJson()' hides inherited member '{dtoBase}.ToJson()'. Use the new keyword if hiding was intended."
 #pragma warning disable 114 // Disable "CS0114 '{derivedDto}.RaisePropertyChanged(String)' hides inherited member 'dtoBase.RaisePropertyChanged(String)'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
 #pragma warning disable 472 // Disable "CS0472 The result of the expression is always 'false' since a value of type 'Int32' is never equal to 'null' of type 'Int32?'
@@ -20,7 +18,7 @@ namespace WebApi.Client
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface IItemApi
+    public partial interface IItemClient
     {
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<FileResponse> AddItemAsync(AddItemCommand command);
@@ -39,12 +37,14 @@ namespace WebApi.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ItemApi : IItemApi
+    public partial class ItemClient : IItemClient
     {
+        private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<System.Text.Json.JsonSerializerOptions> _settings;
 
-        public ItemApi()
+        public ItemClient(System.Net.Http.HttpClient httpClient)
         {
+            _httpClient = httpClient;
             _settings = new System.Lazy<System.Text.Json.JsonSerializerOptions>(CreateSerializerSettings);
         }
 
@@ -79,7 +79,7 @@ namespace WebApi.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append("Item");
 
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             var disposeClient_ = false;
             try
             {
@@ -153,7 +153,7 @@ namespace WebApi.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append("Item");
 
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             var disposeClient_ = false;
             try
             {

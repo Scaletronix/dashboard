@@ -10,9 +10,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
     <PackageReference Include="MudBlazor" Version="6.1.7" />
+    <PackageReference Include="Scrutor" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\api\WebApi.Client\WebApi.Client.csproj" />
     <ProjectReference Include="..\Shared\Scaletronix.Shared.csproj" />
   </ItemGroup>
 

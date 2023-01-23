@@ -16,11 +16,6 @@ if (app.Environment.IsDevelopment())
 
     app.UseOpenApi();
     app.UseSwaggerUi3();
-
-    if (Environment.GetEnvironmentVariable("NSWAG_RUN") == "true")
-    {
-        app.Run();
-    }
 }
 else
 {
