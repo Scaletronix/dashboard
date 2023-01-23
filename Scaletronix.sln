@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaletronix.Server", "src\WebUI\Server\Scaletronix.Server.csproj", "{F4D7B211-5B79-42F8-BA60-B55BC7BA1C72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "src\WebUI\Server\Server.csproj", "{F4D7B211-5B79-42F8-BA60-B55BC7BA1C72}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaletronix.Client", "src\WebUI\Client\Scaletronix.Client.csproj", "{108FB739-AE3C-4B67-ABA8-76A689FCD3B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "src\WebUI\Client\Client.csproj", "{108FB739-AE3C-4B67-ABA8-76A689FCD3B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E6CFDA50-45CA-4F25-976C-00F763D15A17}"
 EndProject

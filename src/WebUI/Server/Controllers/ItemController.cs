@@ -3,9 +3,9 @@ using Application.Item.Queries.GetItems;
 using Domain.Item;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Scaletronix.Server.Common.Controlling;
+using Server.Common.Controlling;
 
-namespace Scaletronix.Server.Controllers;
+namespace Server.Controllers;
 
 [ApiController]
 [Route("[controller]")]

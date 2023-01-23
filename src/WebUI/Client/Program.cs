@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
-using Scaletronix.Client;
+using Client;
 using WebApi.Client;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using WebApi.Client;
 
-namespace Scaletronix.Client.Pages;
+namespace Client.Pages;
 
 public partial class Index
 {
