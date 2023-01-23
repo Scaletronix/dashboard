@@ -7,22 +7,32 @@
     "version": "v1"
   },
   "paths": {
-    "/WeatherForecast": {
-      "get": {
+    "/Item": {
+      "post": {
         "tags": [
-          "WeatherForecast"
+          "Item"
         ],
-        "operationId": "WeatherForecast_Get",
+        "operationId": "Item_AddItem",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddItemCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
         "responses": {
           "200": {
             "description": "",
             "content": {
-              "application/json": {
+              "application/octet-stream": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -33,25 +43,19 @@
   },
   "components": {
     "schemas": {
-      "WeatherForecast": {
+      "AddItemCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "date": {
-            "type": "string",
-            "format": "date-time"
+          "title": {
+            "type": "string"
           },
-          "temperatureC": {
-            "type": "integer",
-            "format": "int32"
+          "description": {
+            "type": "string"
           },
-          "summary": {
-            "type": "string",
-            "nullable": true
-          },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32"
+          "initialWeight": {
+            "type": "number",
+            "format": "decimal"
           }
         }
       }
