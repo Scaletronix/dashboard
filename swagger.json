@@ -38,12 +38,49 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Item"
+        ],
+        "operationId": "Item_GetItems",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemDto"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
     "schemas": {
       "AddItemCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "initialWeight": {
+            "type": "number",
+            "format": "decimal"
+          }
+        }
+      },
+      "ItemDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
