@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.10" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.18.2" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.18.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Client\Scaletronix.Client.csproj" />
+    <ProjectReference Include="..\Shared\Scaletronix.Shared.csproj" />
+  </ItemGroup>
+
+  <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+    <Exec ConsoleToMSBuild="true" ContinueOnError="true" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development;NSWAG_RUN=true" Command="$(NSwagExe_Net60) aspnetcore2openapi /assembly:&quot;$(TargetDir)$(MSBuildProjectName).dll&quot; /output:../../../swagger.json">
+	  <Output TaskParameter="ExitCode" PropertyName="OpenApiGenerationExitCode" />
+	  <Output TaskParameter="ConsoleOutput" PropertyName="OpenApiGenerationOutput" />
+	</Exec>
+	<Message Text="$(OpenApiGenerationOutput)" Importance="low" />
+	<Warning Text="NSwag failed to generate the OpenAPI specification. Output: $(OpenApiGenerationOutput)" Condition="'$(OpenApiGenerationExitCode)' != '0'" />
+	<Exec ConsoleToMSBuild="true" ContinueOnError="true" Condition="'$(OpenApiGenerationExitCode)' == '0'" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development;NSWAG_RUN=true" Command="$(NSwagExe_Net60) run nswag.json">
+	  <Output TaskParameter="ExitCode" PropertyName="CSharpClientGenerationExitCode" />
+	  <Output TaskParameter="ConsoleOutput" PropertyName="CSharpClientGenerationOutput" />
+	</Exec>
+	<Message Text="$(CSharpClientGenerationOutput)" Importance="low" />
+	<Warning Text="NSwag failed to generate the CSharp client. Output: $(CSharpClientGenerationOutput)" Condition="'$(CSharpClientGenerationExitCode)' != '0'" />
+  </Target>
+
+</Project>
