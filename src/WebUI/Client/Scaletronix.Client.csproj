@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\api\WebApi.Client\WebApi.Client.csproj" />
-    <ProjectReference Include="..\Shared\Scaletronix.Shared.csproj" />
   </ItemGroup>
 
 </Project>

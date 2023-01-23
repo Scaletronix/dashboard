@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaletronix.Shared", "src\WebUI\Shared\Scaletronix.Shared.csproj", "{EA927DEB-448B-4778-9798-34408A252A45}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaletronix.Server", "src\WebUI\Server\Scaletronix.Server.csproj", "{F4D7B211-5B79-42F8-BA60-B55BC7BA1C72}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaletronix.Client", "src\WebUI\Client\Scaletronix.Client.csproj", "{108FB739-AE3C-4B67-ABA8-76A689FCD3B7}"
@@ -13,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E6CFDA50-45C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{5EA89755-480E-4EF4-8E92-D71769196E0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{542BC3C0-E603-4B9E-9AF4-54D069D8B97D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{542BC3C0-E603-4B9E-9AF4-54D069D8B97D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{823A721A-9A8F-4CA3-95DA-DE807F048370}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{823A721A-9A8F-4CA3-95DA-DE807F048370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{105E3B1A-8BB4-4AFD-A975-5A7BB2BF5A3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{105E3B1A-8BB4-4AFD-A975-5A7BB2BF5A3E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{2BCC4021-AC8A-4893-9B49-3783849A1275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Client", "api\WebApi.Client\WebApi.Client.csproj", "{BE13ACC5-3109-4C83-A453-6D3A4DBEF681}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Client", "api\WebApi.Client\WebApi.Client.csproj", "{BE13ACC5-3109-4C83-A453-6D3A4DBEF681}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA927DEB-448B-4778-9798-34408A252A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA927DEB-448B-4778-9798-34408A252A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA927DEB-448B-4778-9798-34408A252A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA927DEB-448B-4778-9798-34408A252A45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4D7B211-5B79-42F8-BA60-B55BC7BA1C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4D7B211-5B79-42F8-BA60-B55BC7BA1C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4D7B211-5B79-42F8-BA60-B55BC7BA1C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,7 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{EA927DEB-448B-4778-9798-34408A252A45} = {5EA89755-480E-4EF4-8E92-D71769196E0B}
 		{F4D7B211-5B79-42F8-BA60-B55BC7BA1C72} = {5EA89755-480E-4EF4-8E92-D71769196E0B}
 		{108FB739-AE3C-4B67-ABA8-76A689FCD3B7} = {5EA89755-480E-4EF4-8E92-D71769196E0B}
 		{5EA89755-480E-4EF4-8E92-D71769196E0B} = {E6CFDA50-45CA-4F25-976C-00F763D15A17}
