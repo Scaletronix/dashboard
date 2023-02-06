@@ -1,6 +1,14 @@
-﻿namespace Application.Common.Interfaces;
+﻿using Domain.Employee;
+using Domain.TimeEntry;
+using Microsoft.EntityFrameworkCore;
+
+namespace Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
+    public DbSet<EmployeeDto> Employees { get; }
+
+    public DbSet<TimeEntryDto> TimeEntries { get; }
+
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
