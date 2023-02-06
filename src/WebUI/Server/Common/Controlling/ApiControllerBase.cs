@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Scaletronix.Server.Common.Controlling;
+namespace Server.Common.Controlling;
 
 public abstract class ApiControllerBase : ControllerBase
 {

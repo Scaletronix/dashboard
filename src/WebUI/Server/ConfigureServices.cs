@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Reflection;
 
-namespace Scaletronix.Server;
+namespace Server;
 
 public static class ConfigureServices
 {

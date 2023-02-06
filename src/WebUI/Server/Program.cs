@@ -1,6 +1,6 @@
 using Application;
 using Infrastructure;
-using Scaletronix.Server;
+using Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
