@@ -21,19 +21,8 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
-  <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
-    <Exec ConsoleToMSBuild="true" ContinueOnError="true" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development;NSWAG_RUN=true" Command="$(NSwagExe_Net60) aspnetcore2openapi /assembly:&quot;$(TargetDir)$(MSBuildProjectName).dll&quot; /output:../../../swagger.json">
-	  <Output TaskParameter="ExitCode" PropertyName="OpenApiGenerationExitCode" />
-	  <Output TaskParameter="ConsoleOutput" PropertyName="OpenApiGenerationOutput" />
-	</Exec>
-	<Message Text="$(OpenApiGenerationOutput)" Importance="low" />
-	<Warning Text="NSwag failed to generate the OpenAPI specification. Output: $(OpenApiGenerationOutput)" Condition="'$(OpenApiGenerationExitCode)' != '0'" />
-	<Exec ConsoleToMSBuild="true" ContinueOnError="true" Condition="'$(OpenApiGenerationExitCode)' == '0'" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development;NSWAG_RUN=true" Command="$(NSwagExe_Net60) run nswag.json">
-	  <Output TaskParameter="ExitCode" PropertyName="CSharpClientGenerationExitCode" />
-	  <Output TaskParameter="ConsoleOutput" PropertyName="CSharpClientGenerationOutput" />
-	</Exec>
-	<Message Text="$(CSharpClientGenerationOutput)" Importance="low" />
-	<Warning Text="NSwag failed to generate the CSharp client. Output: $(CSharpClientGenerationOutput)" Condition="'$(CSharpClientGenerationExitCode)' != '0'" />
+  <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run /variables:Configuration=$(Configuration)" />
   </Target>
 
 </Project>
