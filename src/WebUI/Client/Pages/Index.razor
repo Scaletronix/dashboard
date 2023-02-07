@@ -2,4 +2,30 @@
 
 <PageTitle>Index</PageTitle>
 
-<MudText>Hello World!</MudText>
+@if (form == null)
+{
+    <MudPaper Class="pa-4">
+        <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+            <MudTextField T="string" Label="Identifier" Required="true" RequiredError="Identifier is required!" />
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" Class="ml-auto">Login</MudButton>
+        </MudForm>
+    </MudPaper>
+}
+else
+{
+    <MudText>Hello World</MudText>
+}
+
+@code {
+    bool success;
+
+    string[] errors = { };
+
+    MudForm form;
+
+    public void Login()
+    {
+        StateHasChanged();
+    }
+
+}

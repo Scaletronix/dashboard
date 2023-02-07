@@ -6,5 +6,162 @@
     "description": "Example description",
     "version": "v1"
   },
-  "components": {}
+  "paths": {
+    "/Employee": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Employee_CreateEmployee",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEmployeeCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Employee/{identifier}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Employee_GetEmployeeByIdentifier",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateEmployeeCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "EmployeeDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/EntityBase"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "identifier": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "workState": {
+                "$ref": "#/components/schemas/WorkStateEnum"
+              },
+              "timeEntries": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TimeEntryDto"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "WorkStateEnum": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Working",
+          "NotWorking"
+        ],
+        "enum": [
+          1,
+          2
+        ]
+      },
+      "TimeEntryDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/EntityBase"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "employee": {
+                "$ref": "#/components/schemas/EmployeeDto"
+              },
+              "startedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "endedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        ]
+      },
+      "EntityBase": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      }
+    }
+  }
 }
