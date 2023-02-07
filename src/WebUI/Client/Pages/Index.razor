@@ -1,31 +1,51 @@
 ﻿@page "/"
+@using WebApi.Client;
 
 <PageTitle>Index</PageTitle>
 
-@if (form == null)
+@if (isSubmitted == false)
 {
-    <MudPaper Class="pa-4">
-        <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
-            <MudTextField T="string" Label="Identifier" Required="true" RequiredError="Identifier is required!" />
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" Class="ml-auto">Login</MudButton>
-        </MudForm>
-    </MudPaper>
+    <MudForm>
+        <MudTextField @bind-Value="Identifier" T="string" Label="Identifier" Required="true" RequiredError="Identifier is required!" />
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@(async () => await Login())">Login</MudButton>
+    </MudForm>
 }
 else
 {
-    <MudText>Hello World</MudText>
+    <MudText>@Employee.Name</MudText>
 }
 
 @code {
-    bool success;
 
-    string[] errors = { };
+    [Inject] IEmployeeClient EmployeeClient { get; set; }
 
-    MudForm form;
+    EmployeeDto Employee;
 
-    public void Login()
+    bool isSubmitted;
+
+    string? Identifier;
+
+    public async Task Login()
     {
-        StateHasChanged();
+        try
+        {
+            var employee = await EmployeeClient.GetEmployeeByIdentifierAsync(Identifier);
+
+            if (employee == null)
+            {
+                return;
+            }
+
+            Employee = employee;
+
+            isSubmitted = true;
+
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            return;
+        }
     }
 
 }
