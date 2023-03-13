@@ -40,7 +40,7 @@
         }
       }
     },
-    "/Employee/{identifier}": {
+    "/Employee/{id}": {
       "get": {
         "tags": [
           "Employee"
@@ -48,7 +48,7 @@
         "operationId": "Employee_GetEmployeeByIdentifier",
         "parameters": [
           {
-            "name": "identifier",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -87,6 +87,87 @@
           }
         }
       }
+    },
+    "/Employee/work-state/{id}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Employee_GetCurrentWorkState",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkStateEnum"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/TimeEntry": {
+      "post": {
+        "tags": [
+          "TimeEntry"
+        ],
+        "operationId": "TimeEntry_StampIn",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StampInCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -95,7 +176,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "identifier": {
+          "id": {
             "type": "string"
           },
           "name": {
@@ -104,32 +185,26 @@
         }
       },
       "EmployeeDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/EntityBase"
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 8
           },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "identifier": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "workState": {
-                "$ref": "#/components/schemas/WorkStateEnum"
-              },
-              "timeEntries": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/TimeEntryDto"
-                }
-              }
+          "name": {
+            "type": "string"
+          },
+          "workState": {
+            "$ref": "#/components/schemas/WorkStateEnum"
+          },
+          "timeEntries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeEntryDto"
             }
           }
-        ]
+        }
       },
       "WorkStateEnum": {
         "type": "integer",
@@ -144,37 +219,25 @@
         ]
       },
       "TimeEntryDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/EntityBase"
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "employee": {
-                "$ref": "#/components/schemas/EmployeeDto"
-              },
-              "startedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "endedAt": {
-                "type": "string",
-                "format": "date-time"
-              }
-            }
-          }
-        ]
-      },
-      "EntityBase": {
         "type": "object",
-        "x-abstract": true,
         "additionalProperties": false,
         "properties": {
           "id": {
             "type": "string",
             "format": "guid"
+          },
+          "employee": {
+            "$ref": "#/components/schemas/EmployeeDto"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         }
       },
@@ -204,6 +267,19 @@
           "instance": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "StampInCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       }

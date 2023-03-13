@@ -17,7 +17,7 @@ public sealed class GetEmployeeByIdentifierQueryHandler : IRequestHandler<GetEmp
     public async Task<EmployeeDto?> Handle(GetEmployeeByIdentifierQuery request, CancellationToken cancellationToken)
     {
         var employee = await _dbContext.Employees
-            .Where(e => e.Identifier == request.Identifier)
+            .Where(e => e.Id == request.Id)
             .FirstOrDefaultAsync(cancellationToken);
 
         return employee;

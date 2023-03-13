@@ -1,12 +1,13 @@
-﻿using Domain.Common.Entities;
-using Domain.Employee.Enums;
+﻿using Domain.Employee.Enums;
 using Domain.TimeEntry;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Employee;
 
-public sealed class EmployeeDto : EntityBase
+public sealed class EmployeeDto
 {
-    public string Identifier { get; set; }
+    [MaxLength(8)]
+    public string Id { get; set; }
 
     public string Name { get; set; }
 

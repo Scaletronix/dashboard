@@ -17,7 +17,7 @@ public sealed class CreateEmployeeCommandHandler : IRequestHandler<CreateEmploye
     {
         var employee = new EmployeeDto
         {
-            Identifier  = request.Identifier,
+            Id = request.Id,
             Name = request.Name
         };
 
