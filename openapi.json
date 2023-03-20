@@ -136,7 +136,7 @@
         }
       }
     },
-    "/TimeEntry": {
+    "/TimeEntry/stamp-in": {
       "post": {
         "tags": [
           "TimeEntry"
@@ -148,6 +148,39 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/StampInCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TimeEntry/stamp-out": {
+      "post": {
+        "tags": [
+          "TimeEntry"
+        ],
+        "operationId": "TimeEntry_StampOut",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StampOutCommand"
               }
             }
           },
@@ -276,10 +309,15 @@
         "properties": {
           "id": {
             "type": "string"
-          },
-          "startedAt": {
-            "type": "string",
-            "format": "date-time"
+          }
+        }
+      },
+      "StampOutCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
           }
         }
       }
