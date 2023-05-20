@@ -1,4 +1,4 @@
-﻿using Domain.Employee.Enums;
+﻿using Domain.Enums;
 using MediatR;
 
 namespace Application.Employee.Queries.GetCurrentWorkState;

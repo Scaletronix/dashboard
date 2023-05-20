@@ -1,5 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using Domain.Employee;
+using Domain.Entities;
 using MediatR;
 
 namespace Application.Employee.Commands.CreateEmployee;

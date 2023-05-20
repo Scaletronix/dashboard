@@ -1,4 +1,4 @@
-﻿namespace Domain.Employee.Enums;
+﻿namespace Domain.Enums;
 
 public enum WorkStateEnum
 {

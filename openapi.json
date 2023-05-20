@@ -64,7 +64,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EmployeeDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeEntryDto"
+                  }
                 }
               }
             }
@@ -217,6 +220,32 @@
           }
         }
       },
+      "TimeEntryDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "employee": {
+            "$ref": "#/components/schemas/EmployeeDto"
+          },
+          "employeeId": {
+            "type": "string"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
       "EmployeeDto": {
         "type": "object",
         "additionalProperties": false,
@@ -250,29 +279,6 @@
           1,
           2
         ]
-      },
-      "TimeEntryDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "employee": {
-            "$ref": "#/components/schemas/EmployeeDto"
-          },
-          "startedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "endedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        }
       },
       "ProblemDetails": {
         "type": "object",

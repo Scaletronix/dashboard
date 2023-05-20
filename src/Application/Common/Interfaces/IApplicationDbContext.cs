@@ -1,5 +1,4 @@
-﻿using Domain.Employee;
-using Domain.TimeEntry;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Common.Interfaces;

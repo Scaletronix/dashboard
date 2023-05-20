@@ -1,8 +1,8 @@
 ﻿using Application.Employee.Commands.CreateEmployee;
 using Application.Employee.Queries.GetCurrentWorkState;
 using Application.Employee.Queries.GetEmployeeByIdentifier;
-using Domain.Employee;
-using Domain.Employee.Enums;
+using Domain.Entities;
+using Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Server.Common.Controlling;
@@ -28,7 +28,7 @@ public sealed class EmployeeController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<EmployeeDto>> GetEmployeeByIdentifier(string id)
+    public async Task<ActionResult<IEnumerable<TimeEntryDto>>> GetEmployeeByIdentifier(string id)
     {
         var query = new GetEmployeeByIdentifierQuery { Id = id };
 

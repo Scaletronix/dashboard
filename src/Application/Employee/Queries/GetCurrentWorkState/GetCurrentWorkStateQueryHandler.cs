@@ -1,5 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using Domain.Employee.Enums;
+using Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

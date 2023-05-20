@@ -12,14 +12,30 @@
 }
 else
 {
-    <MudText>@Employee.Name</MudText>
+    <MudText>Welcome back!</MudText>
+
+    <br />
+    <br />
+
+    <MudTable Items="@TimeEntries">
+        <HeaderContent>
+            <MudTh>Starting Time</MudTh>
+            <MudTh>End Time</MudTh>
+            <MudTh>Time Difference</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>@context.StartedAt</MudTd>
+            <MudTd>@context.EndedAt</MudTd>
+            <MudTd>@(context.EndedAt - context.StartedAt)</MudTd>
+        </RowTemplate>
+    </MudTable>
 }
 
 @code {
 
     [Inject] IEmployeeClient EmployeeClient { get; set; }
 
-    EmployeeDto Employee;
+    public IEnumerable<TimeEntryDto> TimeEntries { get; set; }
 
     bool isSubmitted;
 
@@ -29,14 +45,12 @@ else
     {
         try
         {
-            var employee = await EmployeeClient.GetEmployeeByIdentifierAsync(Identifier);
+            TimeEntries = await EmployeeClient.GetEmployeeByIdentifierAsync(Identifier);
 
-            if (employee == null)
+            if (TimeEntries == null)
             {
                 return;
             }
-
-            Employee = employee;
 
             isSubmitted = true;
 

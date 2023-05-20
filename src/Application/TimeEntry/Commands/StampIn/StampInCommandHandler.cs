@@ -1,5 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using Domain.TimeEntry;
+using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

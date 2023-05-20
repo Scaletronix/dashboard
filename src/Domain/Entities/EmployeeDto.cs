@@ -1,10 +1,9 @@
-﻿using Domain.Employee.Enums;
-using Domain.TimeEntry;
+﻿using Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Employee;
+namespace Domain.Entities;
 
-public sealed class EmployeeDto
+public class EmployeeDto
 {
     [MaxLength(8)]
     public string Id { get; set; }
@@ -13,5 +12,5 @@ public sealed class EmployeeDto
 
     public WorkStateEnum WorkState { get; set; } = WorkStateEnum.NotWorking;
 
-    public IEnumerable<TimeEntryDto> TimeEntries { get; set; }
+    public virtual ICollection<TimeEntryDto> TimeEntries { get; set; }
 }

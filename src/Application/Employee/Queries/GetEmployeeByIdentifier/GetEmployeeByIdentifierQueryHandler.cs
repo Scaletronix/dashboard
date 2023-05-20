@@ -1,11 +1,11 @@
 ﻿using Application.Common.Interfaces;
-using Domain.Employee;
+using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Employee.Queries.GetEmployeeByIdentifier;
 
-public sealed class GetEmployeeByIdentifierQueryHandler : IRequestHandler<GetEmployeeByIdentifierQuery, EmployeeDto?>
+public sealed class GetEmployeeByIdentifierQueryHandler : IRequestHandler<GetEmployeeByIdentifierQuery, IEnumerable<TimeEntryDto>?>
 {
     private readonly IApplicationDbContext _dbContext;
 
@@ -14,12 +14,11 @@ public sealed class GetEmployeeByIdentifierQueryHandler : IRequestHandler<GetEmp
         _dbContext = dbContext;
     }
 
-    public async Task<EmployeeDto?> Handle(GetEmployeeByIdentifierQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<TimeEntryDto>?> Handle(GetEmployeeByIdentifierQuery request, CancellationToken cancellationToken)
     {
-        var employee = await _dbContext.Employees
-            .Where(e => e.Id == request.Id)
-            .FirstOrDefaultAsync(cancellationToken);
+        var fullDataOfEmployee = await _dbContext.TimeEntries
+            .Where(e => e.EmployeeId == request.Id).ToListAsync();
 
-        return employee;
+        return fullDataOfEmployee;
     }
 }
